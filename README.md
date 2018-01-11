@@ -75,9 +75,22 @@ def optimize(f, g, x0, maxiter=2000, gtol=1e-6, verbose=True, printEvery=50):
 Обучим сеть и запустим:
 выведем : итерацию, норму градиента и значение функции (видим как значение ф-ии уменьшается =) )
 И ошибку: 97% верно распознал
+
 ![](https://raw.githubusercontent.com/okiochan/network-optimize/master/img/i1.png)
  
  и сам результат классификации
  
 ![](https://raw.githubusercontent.com/okiochan/network-optimize/master/img/i2.png)
+ 
+
+# Оптимизация нейро сети
+
+Идея такая: обучим сеть на малом кол-ве нейронов, посчитаем ошибку (она будет большая).
+В уже обученную сеть добавим один нейрон, заново обучим, посчитаем ошибку... так будем повторять, пока ошибка не станет меньше заданного порога.
+
+Посмотрим на примере
+
+![](https://raw.githubusercontent.com/okiochan/network-optimize/master/img/i3.png)
+
+![](https://raw.githubusercontent.com/okiochan/network-optimize/master/img/i33.png)
  
