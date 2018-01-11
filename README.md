@@ -75,9 +75,9 @@ def optimize(f, g, x0, maxiter=2000, gtol=1e-6, verbose=True, printEvery=50):
 Обучим сеть и запустим:
 выведем : итерацию, норму градиента и значение функции (видим как значение ф-ии уменьшается =) )
 И ошибку: 97% верно распознал
-![](https://raw.githubusercontent.com/okiochan/network-optimize/master/img/i1.gif)
+![](https://raw.githubusercontent.com/okiochan/network-optimize/master/img/i1.png)
  
  и сам результат классификации
  
-![](https://raw.githubusercontent.com/okiochan/network-optimize/master/img/i2.gif)
+![](https://raw.githubusercontent.com/okiochan/network-optimize/master/img/i2.png)
  
