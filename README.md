@@ -35,12 +35,12 @@
 ![](https://raw.githubusercontent.com/okiochan/network-optimize/master/formula/f5.gif)
 
 3) Обновим
-![](https://raw.githubusercontent.com/okiochan/network-optimize/master/formula/f5.gif)
+![](https://raw.githubusercontent.com/okiochan/network-optimize/master/formula/f6.gif)
 
 4) Бин поиском найдем альфу
-![](https://raw.githubusercontent.com/okiochan/network-optimize/master/formula/f6.gif)
+![](https://raw.githubusercontent.com/okiochan/network-optimize/master/formula/f7.gif)
  
-5) обновим позицию ![](https://raw.githubusercontent.com/okiochan/network-optimize/master/formula/f7.gif)
+5) обновим позицию ![](https://raw.githubusercontent.com/okiochan/network-optimize/master/formula/f8.gif)
  
  
  
