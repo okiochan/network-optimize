@@ -92,5 +92,9 @@ def optimize(f, g, x0, maxiter=2000, gtol=1e-6, verbose=True, printEvery=50):
 
 ![](https://raw.githubusercontent.com/okiochan/network-optimize/master/img/i3.png)
 
+картинка показывает как уменьшается ошибка при увеличении кол-ва нейронов для 1-го скрытого слоя. Для данного примера, 12 нейроновв достаточно
+
 ![](https://raw.githubusercontent.com/okiochan/network-optimize/master/img/i33.png)
+
+На картинке : сколько нейронов взято, в каждой строке: кол-во итераций, норма градиента, значение функции
  
