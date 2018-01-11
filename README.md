@@ -37,7 +37,8 @@
 3) Обновим
 ![](https://raw.githubusercontent.com/okiochan/network-optimize/master/formula/f6.gif)
 
-4) Бин поиском найдем альфу
+4) Оптимизируем направление
+ ( Для поиска правой границе в спуске, воспользуемся [Ternary_search ]( https://en.wikipedia.org/wiki/Ternary_search) )
 ![](https://raw.githubusercontent.com/okiochan/network-optimize/master/formula/f7.gif)
  
 5) обновим позицию ![](https://raw.githubusercontent.com/okiochan/network-optimize/master/formula/f8.gif)
@@ -63,6 +64,15 @@ Y[Y == 0] = -1
 
 В файле **nn.py** сама нейро сеть, ее основные методы **forward** (пропускаем вход к выходу), **__init__** - конструктор сети,
 **cost** - SSE, **cheslennyi gradient** - был написан численный градиент, чтобы проверить backpropgation - **cost_grad**
+
+В файле **conjugate_gradient.py** - обучение сети, **bins** - обычный бин поиск
+
+**optimize** - Nonlinear conjugate gradient, принимает SSE, градиент, кол-во итераций, остальное не задется.
+```
+def optimize(f, g, x0, maxiter=2000, gtol=1e-6, verbose=True, printEvery=50):
+```
+
+
 
  
  
