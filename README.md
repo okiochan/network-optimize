@@ -78,7 +78,7 @@ def optimize(f, g, x0, maxiter=2000, gtol=1e-6, verbose=True, printEvery=50):
 
 ![](https://raw.githubusercontent.com/okiochan/network-optimize/master/img/i1.png)
  
- и сам результат классификации
+ и сам результат классификации (сеть: 2 входных, 10 на скрытом, 1 на выходе)
  
 ![](https://raw.githubusercontent.com/okiochan/network-optimize/master/img/i2.png)
  
@@ -97,4 +97,12 @@ def optimize(f, g, x0, maxiter=2000, gtol=1e-6, verbose=True, printEvery=50):
 ![](https://raw.githubusercontent.com/okiochan/network-optimize/master/img/i33.png)
 
 На картинке : сколько нейронов взято, в каждой строке: кол-во итераций, норма градиента, значение функции
+
+вот какая картинка получилась для 1-го скрытого слоя и 12 нейронов
+
+![](https://raw.githubusercontent.com/okiochan/network-optimize/master/img/i4.png)
+
+вот еще пример, 2 скрытых слоя по 10 и 5 нейронов
+
+![](https://raw.githubusercontent.com/okiochan/network-optimize/master/img/i5.png)
  
