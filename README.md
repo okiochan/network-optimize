@@ -1,7 +1,7 @@
 #non-linear
 
 Реализован многослойный персептрон с **backpropagation**
-Описание метода **bakpropagation** лежит в [файле]( https://github.com/okiochan/network-optimize/blob/master/backprop.docx)
+Описание метода **bakpropagation** и выведенные рассчетные формулы лежат в [файле]( https://github.com/okiochan/network-optimize/blob/master/backprop.docx)
 
 Обучала методом [Nonlinear conjugate gradient ]( https://en.wikipedia.org/wiki/Nonlinear_conjugate_gradient_method)
 
@@ -41,8 +41,26 @@
 ![](https://raw.githubusercontent.com/okiochan/network-optimize/master/formula/f7.gif)
  
 5) обновим позицию ![](https://raw.githubusercontent.com/okiochan/network-optimize/master/formula/f8.gif)
- 
- 
- 
+
+Для того, чтобы запустить сеть, нужно открыть **train.py**.
+
+В 17й строке, в train.py, задается архитектура сети
+Метод принимает список нейронов (он же и задает список слоев) и функции активации для каждого слоя
+В файле **activations.py** есть много разных функций активаций, достаточно написать их имя в методе.
+
+В данном примере у нас 3 слоя, 1 скрытый. Для 1го слоя функция активации не нужна - это слой входных данных
+```
+NN = nn.NeuralNetwork([2, 10, 1], ["tanh", "tanh"])
+```
+
+Данные нормализованы для тангенса, при смене ф-ии акт., эти строки нужно будет поменять
+```
+max_value = np.max(np.fabs(X))
+X /= (max_value * 1.1)
+Y = np.atleast_2d(Y).T
+Y[Y == 0] = -1
+```
+
+
  
  
