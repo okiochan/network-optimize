@@ -38,7 +38,7 @@
 ![](https://raw.githubusercontent.com/okiochan/network-optimize/master/formula/f6.gif)
 
 4) Оптимизируем направление
- ( Для поиска правой границе в спуске, воспользуемся [Ternary_search ]( https://en.wikipedia.org/wiki/Ternary_search) )
+( Для поиска правой границе в спуске, воспользуемся [Ternary_search ]( https://en.wikipedia.org/wiki/Ternary_search) )
 ![](https://raw.githubusercontent.com/okiochan/network-optimize/master/formula/f7.gif)
  
 5) обновим позицию ![](https://raw.githubusercontent.com/okiochan/network-optimize/master/formula/f8.gif)
@@ -67,12 +67,17 @@ Y[Y == 0] = -1
 
 В файле **conjugate_gradient.py** - обучение сети, **bins** - обычный бин поиск
 
-**optimize** - Nonlinear conjugate gradient, принимает SSE, градиент, кол-во итераций, остальное не задется.
+**optimize** - Nonlinear conjugate gradient, принимает SSE, градиент, кол-во итераций, остальное уже задано.
 ```
 def optimize(f, g, x0, maxiter=2000, gtol=1e-6, verbose=True, printEvery=50):
 ```
 
-
-
+Обучим сеть и запустим:
+выведем : итерацию, норму градиента и значение функции (видим как значение ф-ии уменьшается =) )
+И ошибку: 97% верно распознал
+![](https://raw.githubusercontent.com/okiochan/network-optimize/master/img/i1.gif)
  
+ и сам результат классификации
+ 
+![](https://raw.githubusercontent.com/okiochan/network-optimize/master/img/i2.gif)
  
