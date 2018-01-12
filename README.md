@@ -67,9 +67,9 @@ Y[Y == 0] = -1
 
 В файле **conjugate_gradient.py** - обучение сети, **bins** - обычный бин поиск
 
-**optimize** - Nonlinear conjugate gradient, принимает SSE, градиент, кол-во итераций, остальное уже задано.
+**optimize** - Nonlinear conjugate gradient, принимает ф-ю которую минимизируем, ф-ю возвращающую градиент, кол-во итераций, остальное уже задано.
 ```
-def optimize(f, g, x0, maxiter=2000, gtol=1e-6, verbose=True, printEvery=50):
+def optimize(f, g, x0, maxiter=2000, EPS=1e-6, verbose=True, printEvery=50):
 ```
 
 Обучим сеть и запустим:
