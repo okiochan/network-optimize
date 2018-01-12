@@ -38,7 +38,7 @@
 ![](https://raw.githubusercontent.com/okiochan/network-optimize/master/formula/f6.gif)
 
 4) Оптимизируем направление
-( Для поиска правой границе в спуске, воспользуемся [Ternary_search ]( https://en.wikipedia.org/wiki/Ternary_search) )
+( Для поиска правой границе в спуске, воспользуемся золотым сечением )
 ![](https://raw.githubusercontent.com/okiochan/network-optimize/master/formula/f7.gif)
  
 5) обновим позицию ![](https://raw.githubusercontent.com/okiochan/network-optimize/master/formula/f8.gif)
@@ -91,6 +91,17 @@ def optimize(f, g, x0, maxiter=2000, EPS=1e-6, verbose=True, printEvery=50):
 2) после стабилизации весов, добавим новый нейрон (старые значения сохранены)
 3) заново обучим сеть, при этом полезная информ, накопленная сетью, не потеряется
 
+Добавляем нейрон в сеть так (у нас матрица - нам нужно добавить столбец и строку)
+```
+def AddNeuron(NN):
+    a, b, c = NN.layers
+    NN.layers[1] += 1
+    NN.b[0] = np.concatenate((NN.b[0], [0]))
+    n = NN.W[0].shape[1]
+    NN.W[0] = np.hstack((NN.W[0], np.random.randn(a,1) * 1e-5))
+    NN.W[1] = np.vstack((NN.W[1], np.random.randn(1,c) * 1e-5))
+```
+
 Посмотрим на примере
 
 ![](https://raw.githubusercontent.com/okiochan/network-optimize/master/img/i3.png)
@@ -108,6 +119,39 @@ def optimize(f, g, x0, maxiter=2000, EPS=1e-6, verbose=True, printEvery=50):
 вот еще пример, 2 скрытых слоя по 10 и 5 нейронов
 
 ![](https://raw.githubusercontent.com/okiochan/network-optimize/master/img/i5.png)
+
+# Optimal Brain Damage
+
+![](https://raw.githubusercontent.com/okiochan/network-optimize/master/img/d1.png)
+
+![](https://raw.githubusercontent.com/okiochan/network-optimize/master/img/d2.png)
+
+Реализация salience
+
+```
+def Salience(NN, weights, X, Y):
+    sd = SecondDerivatives(NN, weights, X, Y)
+    res = np.zeros(weights.size)
+    for i in range(weights.size):
+        res[i] = weights[i] ** 2 * sd[i]
+    return res
+```
+
+И поудаляем 5 раз веса(axons, Wi ) с наименьшими salience
+
+```
+for i in range(5):
+    w_hat = conjugate_gradient.optimize(cost_wrapper, gradient_wrapper, NN.params(), maxiter=300)
+    s = Salience(NN,w_hat, X, Y)
+    useless = np.argmin(np.abs(s))
+    w_hat[useless] = 0
+    print("Removing axon {} with salience {}".format(useless, s[useless]))
+    NN.params(w_hat)
+```
+Запустим программу, ошибка SSE стала в 2 раза меньше, чем в методе, описанном выше
+Также мы видим какие аксоны удалялись
+
+![](https://raw.githubusercontent.com/okiochan/network-optimize/master/img/d3.png)
  
 Преимщества: В нейросети можно набрать много линейных функций и всего одну нелинейную и можно будет аппроксимировать любую функцию.
 Используя способность обучения на множестве примеров, нейронная сеть способная решать задачи, в которых неизвестны закономерности развития ситуации и зависимости между входными и выходными данными. 
