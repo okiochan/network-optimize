@@ -93,7 +93,7 @@ class NeuralNetwork:
         # return ret
 
     #backprop
-    def cost_grad(self, params, x, y):   ############ :(
+    def cost_grad(self, params, x, y): 
         self.params(params)
 
         dI = [np.empty((x.shape[0], self.layers[q])) for q in range(self.len)]
@@ -125,7 +125,6 @@ class NeuralNetwork:
             ret = np.concatenate((ret.ravel(), dW[q].ravel()))
         for q in range(0, self.len - 1):
             ret = np.concatenate((ret.ravel(), db[q].ravel()))
-
         return ret
 
     def __init_functions(self, functions):
