@@ -1,7 +1,38 @@
 #non-linear
 
 Реализован многослойный персептрон с **backpropagation**
-Описание метода **bakpropagation** и выведенные рассчетные формулы лежат в [файле]( https://github.com/okiochan/network-optimize/blob/master/backprop.docx)
+
+Backprop:
+```
+    self.forward(x) # пропускаем вектор от входа к выходу, создаст вектора I,O
+
+    # dI для последнего слоя
+    dI[-1] = (self.O[-1] - y) * self.Fproizv[-1](self.I[-1]) / T
+
+    # dI для остальных слоев (с конца к началу)
+    for q in range(self.len - 2, 0, -1):
+        dI[q] = np.dot(dI[q + 1], self.W[q].T) * self.Fproizv[q - 1](self.I[q])
+
+        # реализуем расчетные полученные формулы
+        OD = np.zeros((T, self.layers[q], self.layers[q+1]))
+        for t in range(T):
+            for i in range(self.layers[q]):
+                for j in range(self.layers[q+1]):
+                    OD[t,i,j] = self.O[q][t,i] * dI[q + 1][t,j]
+        # получили наш градиент
+        dW[q] = np.sum(OD, axis=0)
+        db[q] = np.sum(dI[q + 1], axis=0)
+
+    # переведем градиент в вектор
+    ret = dW[0].ravel()
+    for q in range(1, self.len - 1):
+        ret = np.concatenate((ret.ravel(), dW[q].ravel()))
+    for q in range(0, self.len - 1):
+        ret = np.concatenate((ret.ravel(), db[q].ravel()))
+
+    return ret
+```
+
 
 Обучала методом [Nonlinear conjugate gradient ]( https://en.wikipedia.org/wiki/Nonlinear_conjugate_gradient_method)
 
